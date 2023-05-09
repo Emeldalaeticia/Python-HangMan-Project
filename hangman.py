@@ -64,18 +64,18 @@ def printWord(guessedLetters):
    counter=0     #This is an iterater
    rightLetters=0   #The amount of letters they have gotten right
    for char in randomWord:
-       if(char in guessedLetters):
-           print(randomWord[counter], end=" ")
+       if (char in guessedLetters):
+           print(char, end=" ")
            rightLetters+=1
        else: #*
            print(" ", end=" ")
-           counter+=1
-           return rightLetters
+       counter+=1
+   return rightLetters
        
 def printLines():
     print("\r")
     for char in randomWord:
-        print("u203E", end=" ")
+        print("\u203E", end=" ")
 
 length_of_word_to_guess = len(randomWord)
 # Intiliazing the number of times the user has guessed wrong
@@ -83,11 +83,35 @@ amount_of_times_wrong = 0
 # Intializing guess index which will keep trck where the player is in the whole array i.e _ _ d _ _
 current_guess_index = 0
 # Array of the letters alreaady guessed
-current_letters_guessed = 0
+current_letters_guessed = []
 current_letters_right = 0
 
+while(amount_of_times_wrong != 6 and current_letters_right != length_of_word_to_guess):
+    print("\nLetters guessed so far: ")
+    for letter in current_letters_guessed:
+        print(letter, end=" ")
+    # Prompt user for input
+    letterGuessed = input("\nGuess a letter: ")
+    # To determine if the user is right
+    if(randomWord[current_guess_index] == letterGuessed):
+        print_hangman(amount_of_times_wrong)
+        # Print Word
+        current_guess_index+=1
+        current_letters_guessed.append(letterGuessed)
+        current_letters_right = printWord(current_letters_guessed)
+        printLines()
+    # When user was wrong
+    else:
+        amount_of_times_wrong+=1
+        current_letters_guessed.append(letterGuessed)
+        #update the drawing   
+        print_hangman(amount_of_times_wrong)
+        # Print Out the word
+        current_letters_right = printWord(current_letters_guessed)
+        printLines
 
-    
+print("Game is over! Thank you for playing.")
+
     
     
     
