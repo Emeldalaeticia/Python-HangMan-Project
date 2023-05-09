@@ -106,6 +106,7 @@ while(amount_of_times_wrong != 6 and current_letters_right != length_of_word_to_
    
 
 print("Game is over! Thank you for playing.")
+
 print("The word was:", randomWord)
     
     
