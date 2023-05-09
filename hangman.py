@@ -65,7 +65,7 @@ def printWord(guessedLetters):
    rightLetters=0   #The amount of letters they have gotten right
    for char in randomWord:
        if (char in guessedLetters):
-           print(char, end=" ")
+           print(randomWord[counter], end=" ")
            rightLetters+=1
        else: #*
            print(" ", end=" ")
@@ -89,29 +89,24 @@ current_letters_right = 0
 while(amount_of_times_wrong != 6 and current_letters_right != length_of_word_to_guess):
     print("\nLetters guessed so far: ")
     for letter in current_letters_guessed:
-        print(letter, end=" ")
+      print(letter, end=" ")
     # Prompt user for input
     letterGuessed = input("\nGuess a letter: ")
     # To determine if the user is right
-    if(randomWord[current_guess_index] == letterGuessed):
-        print_hangman(amount_of_times_wrong)
-        # Print Word
-        current_guess_index+=1
+
+    if letterGuessed in randomWord:
         current_letters_guessed.append(letterGuessed)
         current_letters_right = printWord(current_letters_guessed)
         printLines()
     # When user was wrong
     else:
-        amount_of_times_wrong+=1
-        current_letters_guessed.append(letterGuessed)
-        #update the drawing   
         print_hangman(amount_of_times_wrong)
-        # Print Out the word
-        current_letters_right = printWord(current_letters_guessed)
-        printLines
+        amount_of_times_wrong += 1
+        current_letters_guessed.append(letterGuessed)
+   
 
 print("Game is over! Thank you for playing.")
-
+print("The word was:", randomWord)
     
     
     
